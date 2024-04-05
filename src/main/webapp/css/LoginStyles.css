@@ -1,0 +1,78 @@
+
+.header{
+  background-color:#627282;
+  color: white;
+  margin-top: 30px;
+  text-align: center;
+  padding:20px;
+  border-radius: 15px;
+}
+.formBox{
+  background-color:#627282;
+  display:flex;
+  flex-direction: column;
+  width: 20%;
+  height: 40%;
+  margin-top: 10%;
+  margin-left: 40%;
+  box-shadow: 0 2px 15px 0 rgba(30,37,44,0.29);
+  border-radius: 5%;
+  text-align: center;
+  
+}
+.userElements{
+  display: flex;
+  margin-top: 20px;
+}
+.userIdBoxSpace{
+ display: flex;
+  margin-top: 5%;
+  margin-left: auto;
+  
+}
+.passwordIdBoxSpace{
+  display: flex;
+  margin: auto;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.endSearch{
+  padding-top: 30px;
+  text-align: center;
+
+}
+.forgotPassword{ margin:auto;
+  text-align: center;
+  padding: 20px;
+  font-size: 8px;
+}
+button{
+ 
+  align-items: center;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px;
+  width: 40%;
+ 
+ 
+  
+}
+
+input{
+  
+  width: 60%;
+  padding: 10px;
+  border-radius: 10px;
+ 
+ 
+  
+}
+img{
+  display: inline-block;
+  width: 18%;
+  height: 18%;
+  margin-left: 20%;
+
+}
+
