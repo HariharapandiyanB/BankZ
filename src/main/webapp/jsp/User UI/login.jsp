@@ -104,7 +104,7 @@ img{
 			</h1>
 			<div class="userIdBoxSpace">
 				<input style="margin-left: 70px; width: 60%; align: center;"
-					type="number" name="userId" placeholder="userId" required>
+					type="number" min="1"  name="userId" placeholder="userId" required>
 
 			</div>
 			<div class="passwordIdBoxSpace">
@@ -115,7 +115,6 @@ img{
 
 				<button
 					style="background-color: #627282; border-color: #627282; color: white;">Submit</button>
-
 				
 
 			</div>

@@ -10,6 +10,7 @@ import java.util.Map;
 import com.bankz.enums.UserStatus;
 import com.bankz.pojo.User;
 import com.bankz.utilities.InvalidInputException;
+import com.bankz.utilities.UtilityTasks;
 
 public class UserPersistence {
 	
@@ -26,27 +27,10 @@ public class UserPersistence {
 		return (User)resultMap.get(userId);
 	}
 	
-	public void modifyInfo(int userId,String field,Object value) throws InvalidInputException,SQLException{
-		Map<String, Object> keyMap=getMap(dbTasks.fetchColumnList("User").get(0), userId);
-		Map<String, Object> updateMap=null;
-		switch(field) {
-		case "Name":
-			updateMap=getMap(dbTasks.fetchColumnList("User").get(2), value);
-			break;
-		case "DOB":
-			updateMap=getMap(dbTasks.fetchColumnList("User").get(4), value);
-			break;
-		case "Email":
-			updateMap=getMap(dbTasks.fetchColumnList("User").get(3), value);
-			break;
-		case "Address":
-			updateMap=getMap(dbTasks.fetchColumnList("User").get(5), value);
-			break;
-		case "Contact Number":
-			updateMap=getMap(dbTasks.fetchColumnList("User").get(8), value);
-			break;
-		}
-		dbTasks.modifyRecord("User", keyMap, updateMap);
+	public void addLog(List<Object>logList) throws SQLException,InvalidInputException{
+		UtilityTasks.checkNull(logList);
+		List<String> fieldList=dbTasks.fetchColumnList("Audit_Log");
+		dbTasks.addRecords("Audit_Log", fieldList, logList);
 	}
 	
 	public void changePassword(String password,int userId) throws SQLException,InvalidInputException, NoSuchAlgorithmException{

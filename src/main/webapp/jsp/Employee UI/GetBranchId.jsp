@@ -51,9 +51,9 @@
         <jsp:include page="/jsp/User UI/Header.jsp"></jsp:include>
         <div class="container">
             
-            <form action="app/<%=session.getAttribute("operation") %>" method="get">
+            <form action="<%=session.getAttribute("operation") %>" method="get">
                 
-                <h3>Branch Id</h3><input type="number" name="branchId">
+                <h3>Branch Id</h3><input type="number" name="branchId" required>
                 
                 
                     

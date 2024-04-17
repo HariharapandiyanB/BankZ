@@ -51,12 +51,12 @@
             <h1>Branch Details</h1>
             <form action="app/createBranch" method="post">
                 <table>
-                    <tr><td>BranchId</td><td><input type="number" name="branchId"></td></tr>
-                    <tr><td>Branch Name</td><td><input type="text" name="name"></td></tr>
-                    <tr><td>IFSC Code</td><td><input type="text" name="ifscCode"></td></tr>
-                    <tr><td>Address</td><td><input type="text" name="address"></td></tr>
-                    <tr><td>No. of Active Employees</td><td><input type="number" name="numOfActiveEmployees"></td></tr>
-                    <tr><td>No. of Active Accounts</td><td><input type="number" name="numOfActiveAccounts"></td></tr>
+                    <tr><td>BranchId</td><td><input type="number" name="branchId" required></td></tr>
+                    <tr><td>Branch Name</td><td><input type="text" name="name" required></td></tr>
+                    <tr><td>IFSC Code</td><td><input type="text" name="ifscCode" required></td></tr>
+                    <tr><td>Address</td><td><input type="text" name="address" required></td></tr>
+                    <tr><td>No. of Active Employees</td><td><input type="number" name="numOfActiveEmployees" required></td></tr>
+                    <tr><td>No. of Active Accounts</td><td><input type="number" name="numOfActiveAccounts" required></td></tr>
                 </table>
                 <button style="margin-top: 20px; width: 80px;" type ="submit">Submit</button>
             </form>

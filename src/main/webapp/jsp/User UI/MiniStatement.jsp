@@ -24,7 +24,7 @@
     .content table{
         text-align: center;
 		margin-right:0px;
-		margin-left:400px;
+		margin-left:250px;
         margin-top: 50px;
         column-gap: 100mm;
         column-width: 200px;
@@ -48,7 +48,7 @@
 </style>
 <body bgcolor="#273341">
     <jsp:include page="/jsp/User UI/Header.jsp"></jsp:include>
-    <h2>Account Details</h2>
+    
     <div class="content">
     <table>
         <tr>

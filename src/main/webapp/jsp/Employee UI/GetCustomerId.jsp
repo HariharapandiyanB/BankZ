@@ -48,18 +48,19 @@
     </style>
  
         <body bgcolor="#273341">
-       <jsp:include page="/jsp/User UI/Header.jsp"></jsp:include>
+        <jsp:include page="/jsp/User UI/Header.jsp"></jsp:include>
         <div class="container">
             
             <form action="app/<%=session.getAttribute("operation") %>" method="get">
                 
-                <h3>Customer Id</h3><input type="number" name="customerId">
+                <h3>Customer Id</h3><input type="number" name="customerId" required>
                 
-                
+                 
                     
                 <button style="margin-top: 20px; width: 80px;" type ="submit">Submit</button>
             </form>
         </div>
+       <br>
         <jsp:include page="/jsp/User UI/NavBar.jsp"></jsp:include>
 
     </body>

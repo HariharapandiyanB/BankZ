@@ -53,7 +53,7 @@
             
             <form action="app/<%=session.getAttribute("operation") %>" method="get">
                 
-                <h3>Account Number</h3><input type="number" name="accountNumber">
+                <h3>Account Number</h3><input type="number" name="accountNumber" required>
                 
                 
                     

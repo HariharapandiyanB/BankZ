@@ -52,9 +52,9 @@
             <h1>Reset Password</h1>
             <form action="app/resetPassword" method="post">
                 <table>
-                	<tr><td>Old Password</td><td><input type="password" name="oldPassword"></td></tr>
-                    <tr><td>New Password</td><td><input type="password" name="1stpassword"></td></tr>
-                    <tr><td>Confirm Password</td><td><input type="password" name="2ndpassword"></td></tr>
+                	<tr><td>Old Password</td><td><input type="password" name="oldPassword" required></td></tr>
+                    <tr><td>New Password</td><td><input type="password" name="1stpassword" required></td></tr>
+                    <tr><td>Confirm Password</td><td><input type="password" name="2ndpassword" required></td></tr>
                     
                     </table>
                 <button style="margin-top: 20px; width: 80px;" type ="submit">Submit</button>

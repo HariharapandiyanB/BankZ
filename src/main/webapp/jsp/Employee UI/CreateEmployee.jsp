@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -52,15 +54,24 @@
             <h1>Personal Details</h1>
             <form action="app/createEmployee" method="post">
                 <table>
-                    <tr><td>UserId</td><td><input type="number" name="userId"></td></tr>
-                    <tr><td>Password</td><td><input type="password" name="password"></td></tr>
-                    <tr><td>Name</td><td><input type="text" name="name"></td></tr>
-                    <tr><td>DOB</td><td><input type="date" name="dob"></td></tr>
-                    <tr><td>Email</td><td><input type="email" name="email"></td></tr>
-                    <tr><td>Address</td><td><input type="text" name="address"></td></tr>
-                    <tr><td>Contact</td><td><input type="number" name="contactNum"></td></tr>
-                    <tr><td>Department</td><td><input type="text" name="department"></td></tr>
-                    <tr><td>Branch</td><td><input type="text" name="branch"></td></tr>
+                    <tr><td>UserId</td><td><input type="number" name="userId" required></td></tr>
+                    <tr><td>Password</td><td><input type="password" name="password" required></td></tr>
+                    <tr><td>Name</td><td><input type="text" name="name" required></td></tr>
+                    <tr><td>DOB</td><td><input type="date" name="dob" required></td></tr>
+                    <tr><td>Email</td><td><input type="email" name="email" required></td></tr>
+                    <tr><td>Address</td><td><input type="text" name="address" required></td></tr>
+                    <tr><td>Contact</td><td><input type="number" name="contactNum" required></td></tr>
+                    <tr><td>Type</td><td><select name="type" required>
+                    			<option value="1">Employee</option>
+                    			<option value="0">Admin</option></select>
+                    <tr><td>Department</td><td><select name="department" required>
+                    			<option value="Administration">Administration</option>
+                    			<option value="Manangement">Management</option>
+                    			<option value="IT Services">IT Services</option>
+                    			<option value="Customer Relation">Customer Relation</option></td></tr>
+                    <tr><td>Branch</td><td><select name="branch" required>
+                    			<%for(String branchName:(List<String>)request.getAttribute("branchList")){ %>
+                    			<option ><%=branchName%><%} %></option></td></tr>
                 </table>
                 <button style="margin-top: 20px; width: 80px;" type ="submit">Submit</button>
             </form>

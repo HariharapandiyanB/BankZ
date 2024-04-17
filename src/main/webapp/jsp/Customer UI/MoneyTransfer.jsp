@@ -52,8 +52,8 @@
             <h1>Direct Pay</h1>
             <form action="app/moneyTransfer" method="post">
                 <table>
-                    <tr><td>Your Account Number</td><td><input type="number" name="senderAccountNumber"></td></tr>
-                    <tr><td>Receiver Account Number</td><td><input type="number" name="receiverAccountNumber"></td></tr>
+                    <tr><td>Your Account Number</td><td><input type="number" name="senderAccountNumber" required></td></tr>
+                    <tr><td>Receiver Account Number</td><td><input type="number" name="receiverAccountNumber" required></td></tr>
                     <tr>
                         <td>Amount</td><td><input type="number" name="amount"></td>
                     </tr><tr><td>Description</td><td><input type="text" name="description"></td></tr>

@@ -49,6 +49,7 @@
     </style>
     <body bgcolor="#273341">
        <jsp:include page="/jsp/User UI/Header.jsp"></jsp:include>
+       <br><br>
         <jsp:include page="/jsp/User UI/NavBar.jsp"></jsp:include>
     </body>
 </html>

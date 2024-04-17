@@ -52,7 +52,7 @@
             
             <form action="app/<%=session.getAttribute("operation") %>" method="get">
                 
-                <h3>Employee Id</h3><input type="number" name="employeeId">
+                <h3>Employee Id</h3><input type="number" name="employeeId" required>
                 
                 
                     

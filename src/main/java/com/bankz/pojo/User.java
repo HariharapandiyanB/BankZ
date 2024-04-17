@@ -15,6 +15,12 @@ public class User {
 	private String address;
 	private int status;
 	private int type;
+	
+	private int createdBy;
+	
+	private long createdOn;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -69,4 +75,20 @@ public class User {
 	public void setContactNum(long contactNum) {
 		this.contactNum = contactNum;
 	}
+	
+	public long getCreatedOn() {
+		return createdOn;
+	}
+	public void setCreatedOn(long createdOn) {
+		this.createdOn = createdOn;
+	}
+	
+	public int getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(int createdBy) {
+		this.createdBy = createdBy;
+	}
+	
+	
 }

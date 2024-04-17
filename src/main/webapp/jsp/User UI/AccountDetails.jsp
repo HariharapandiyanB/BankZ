@@ -26,7 +26,7 @@
 	}
   .content table{
         text-align: center;
-
+		margin-left:250px;
         margin-top: 50px;
         column-gap: 100mm;
         column-width: 200px;
@@ -51,7 +51,7 @@
     <body bgcolor="#273341">
         <jsp:include page="/jsp/User UI/Header.jsp"></jsp:include>
         <div class="container">
-            <h1>Account Details</h1>
+            
             <div class="content">
             <form>
                  <table>

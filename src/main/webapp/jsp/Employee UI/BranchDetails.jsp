@@ -16,9 +16,10 @@
     <style>
     	
   
-  table{
+ .container table{
         text-align: center;
-
+		margin-right:0px;
+		margin-left:400px;
         margin-top: 50px;
         column-gap: 100mm;
         column-width: 200px;
@@ -26,24 +27,25 @@
         border-color: black;
         background-color: whitesmoke;
     }
-    th{
-        width: 250px;
+    .container table th{
+        width: 200px;
         height: 100px;
         background-color: #627282;
         column-fill: auto;
         padding: auto;
         text-align: center;
         border: 2px solid black;
-    }td{
-        border: 2px solid black;
-        
-    }  
+    }
+    .container table td{
+    	border: 2px solid black;
+    
+    }
     
     </style>
     <body bgcolor="#273341">
         <jsp:include page="/jsp/User UI/Header.jsp"></jsp:include>
         <div class="container">
-            <h1>Branch Details</h1>
+           
             <form>
                  <table>
         <tr>

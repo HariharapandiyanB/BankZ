@@ -52,17 +52,17 @@
             <h1>Personal Details</h1>
             <form action="app/createCustomer" method="post">
                 <table>
-                    <tr><td>UserId</td><td><input type="number" name="userId"></td></tr>
-                    <tr><td>Password</td><td><input type="password" name="password"></td></tr>
+                    <tr><td>UserId</td><td><input type="number" name="userId" required></td></tr>
+                    <tr><td>Password</td><td><input type="password" name="password" required></td></tr>
                     <tr>
-                        <td>Name</td><td><input type="text" name="name"></td>
+                        <td>Name</td><td><input type="text" name="name" required></td>
                     </tr>
-                    <tr><td>DOB</td><td><input type="date" name="dob"></td></tr>
-                    <tr><td>Email</td><td><input type="email" name="email"></td></tr>
-                    <tr><td>Address</td><td><input type="text" name="address"></td></tr>
-                    <tr><td>Contact</td><td><input type="number" name="contact"></td></tr>
-                    <tr><td>Aadhaar Number</td><td><input type="number" name="aadhaarNumber"></td></tr>
-                    <tr><td>PAN Number</td><td><input type="text" name="panNumber"></td></tr>
+                    <tr><td>DOB</td><td><input type="date" name="dob" required></td></tr>
+                    <tr><td>Email</td><td><input type="email" name="email" required></td></tr>
+                    <tr><td>Address</td><td><input type="text" name="address" required></td></tr>
+                    <tr><td>Contact</td><td><input type="number" name="contact" required></td></tr>
+                    <tr><td>Aadhaar Number</td><td><input type="number" name="aadhaarNumber" required></td></tr>
+                    <tr><td>PAN Number</td><td><input type="text" name="panNumber" required></td></tr>
                 </table>
                 <button style="margin-top: 20px; width: 80px;" type ="submit">Submit</button>
             </form>

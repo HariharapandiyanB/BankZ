@@ -51,9 +51,9 @@
             <h1>Deposit Amount</h1>
             <form action="app/depositAmount" method="post">
                 <table>
-                    <tr><td>Account Number</td><td><input type="number" name="accountNumber"></td></tr>
+                    <tr><td>Account Number</td><td><input type="number" name="accountNumber" required></td></tr>
                     <tr>
-                        <td>Amount</td><td><input type="number" name="amount"></td>
+                        <td>Amount</td><td><input type="number" name="amount" required></td>
                     </tr>
                     </table>
                 <button style="margin-top: 20px; width: 80px;" type ="submit">Submit</button>

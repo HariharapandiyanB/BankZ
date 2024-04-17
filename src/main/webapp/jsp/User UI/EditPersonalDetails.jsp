@@ -45,6 +45,18 @@ input {
 	border-color: transparent;
 }
 
+.container button{
+  background-color: white;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px;
+  width: 20%;
+  margin-left:60%;
+ 
+  
+}
+
 .container {
 	background-color: #627282;
 	color: white;
@@ -60,40 +72,10 @@ input {
 	border-radius: 10px;
 	padding-left: 90px;
 	padding-top: 30px;
+	padding-bottom:20px;
 }
 
-.navbar {
-	height: 100%;
-	accent-colorwidth: 300px;
-	display: block;
-	position: fixed;
-	left: 0px;
-	top: 127px;
-	z-index: 5;
-	background-color: #011722;
-	color: red;
-}
 
-.navbar button {
-	background-color: transparent;
-	border-color: transparent;
-	align-items: center;
-	text-align: center;
-	height: 50px;
-	width: 100mm;
-	color: white;
-	font-size: large;
-}
-
-.header button {
-	align-items: center;
-    text-align: center;
-    border-radius: 10px;
-    padding: 10px;
-    width: 100px;
-    margin-right:500px;
-   
-}
 
 tr td{
 	padding-top: 10px;
@@ -105,11 +87,12 @@ tr td{
 		<a href="/BankZ/app/login"><button>logout</button></a>
 
 	</div>
-	<a href="/BankZ/app/getEditPersonalDetailsPage"><img style="margin-left:80%"alt="edit-icon" src="../jsp/User UI/edit-icon.jpeg"></a>
 	<% int userType=(int)(request.getSession().getAttribute("userType"));
 	if(userType==2){ %>
+	<form action="editCustomerPersonalDetails" method=post>
 	<div class="container" style="display: flex; flex-direction: column;">
 		<h2>Personal Details</h2>
+		
 		<%
 		Customer customer = (Customer) request.getAttribute("customer");
 		%>
@@ -120,23 +103,23 @@ tr td{
 			</tr>
 			<tr>
 				<td>Name:</td>
-				<td><%=customer.getName()%></td>
+				<td><input type="text" name="name" value="<%=customer.getName() %>" ></td>
 			</tr>
 			<tr>
 				<td>DOB:</td>
-				<td><%=Supplement.longToDate(customer.getDob())%></td>
+				<td><input type="text" name="dob" value="<%=Supplement.longToDate(customer.getDob())%>"></td>
 			</tr>
 			<tr>
 				<td>Email:</td>
-				<td><%=customer.getEmail()%></td>
+				<td><input type="email" name="email" value="<%=customer.getEmail()%>"></td>
 			</tr>
 			<tr>
 				<td>Address:</td>
-				<td><%=customer.getAddress()%></td>
+				<td><input type="text" name="address" value="<%=customer.getAddress()%>"></td>
 			</tr>
 			<tr>
 				<td>Contact:</td>
-				<td><%=customer.getContactNum()%></td>
+				<td><input type="number" name="contactNumber" value="<%=customer.getContactNum()%>"></td>
 			</tr>
 
 		</table>
@@ -144,6 +127,7 @@ tr td{
 	</div>
 	<div class="container">
 		<h2>KYC Details</h2>
+		
 		<table>
 			<tr>
 				<td>Aadhaar Number:</td>
@@ -154,10 +138,16 @@ tr td{
 				<td><%=customer.getPanNum()%></td>
 			</tr>
 		</table>
+		<button
+					style="background-color: #627282; border-color: #627282; color: white;">Submit</button>
+		
 	</div>
+	</form>
 	<%}else if(userType==1|userType==0){ %>
+	<form action="editEmployeePersonalDetails" method=post>
 		<div class="container" style="display: flex; flex-direction: column;">
 		<h2>Personal Details</h2>
+		
 		<%
 		Employee employee = (Employee) request.getAttribute("employee");
 		%>
@@ -168,30 +158,33 @@ tr td{
 			</tr>
 			<tr>
 				<td>Name:</td>
-				<td><%=employee.getName()%></td>
+				<td><input type="text" name="name" value="<%=employee.getName()%>"></td>
 			</tr>
 			<tr>
 				<td>DOB:</td>
-				<td><%=Supplement.longToDate(employee.getDob())%></td>
+				<td><input type="date" name="dob" value="<%=Supplement.longToDate(employee.getDob())%>"></td>
 			</tr>
 			<tr>
 				<td>Email:</td>
-				<td><%=employee.getEmail()%></td>
+				<td><input type="email" name="email" value="<%=employee.getEmail()%>"></td>
 			</tr>
 			<tr>
 				<td>Address:</td>
-				<td><%=employee.getAddress()%></td>
+				<td><input type="text" name="address" value="<%=employee.getAddress()%>"></td>
 			</tr>
 			<tr>
 				<td>Contact:</td>
-				<td><%=employee.getContactNum()%></td>
+				<td><input type="number" name="contactNumber" value="<%=employee.getContactNum()%>"></td>
 			</tr>
-
+			
+			
 		</table>
-
+		<button style="background-color: #627282; border-color: #627282; color: white;">Submit</button>
+		
 	</div>
 	<div class="container">
 		<h2>Other Details</h2>
+		
 		<table>
 			<tr>
 				<td>Department:</td>
@@ -202,8 +195,10 @@ tr td{
 				<td><%=employee.getBranch()%></td>
 			</tr>
 		</table>
+		
 	</div>
 		<%} %>
+		</form>
 	<jsp:include page="/jsp/User UI/NavBar.jsp"></jsp:include>
 </body>
 </html>

@@ -51,12 +51,12 @@
             <h1>Account Details</h1>
             <form action="app/createAccount" method="post">
                 <table>
-                    <tr><td>UserId</td><td><input type="number" name="userId"></td></tr>
-                    <tr><td>Account Number</td><td><input type="number" name="accountNumber"></td></tr>
-                    <tr><td>Initial Balance</td><td><input type="number" name="initialBalance"></td></tr>
-                    <tr><td>Account Type</td><td><input type="text" name="accountType"></td></tr>
-                    <tr><td>Account Status</td><td><input type="text" name="accountStatus"></td></tr>
-                    <tr><td>Branch Id</td><td><input type="number" name="branchId"></td></tr>
+                    <tr><td>UserId</td><td><input type="number" name="userId" required></td></tr>
+                    <tr><td>Account Number</td><td><input type="number" name="accountNumber" required></td></tr>
+                    <tr><td>Initial Balance</td><td><input type="number" name="initialBalance" required></td></tr>
+                    <tr><td>Account Type</td><td><input type="text" name="accountType" required></td></tr>
+                    <tr><td>Account Status</td><td><input type="text" name="accountStatus" required></td></tr>
+                    <tr><td>Branch Id</td><td><input type="number" name="branchId" required></td></tr>
                 </table>
                 <button style="margin-top: 20px; width: 80px;" type ="submit">Submit</button>
             </form>

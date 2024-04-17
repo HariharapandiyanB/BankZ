@@ -31,15 +31,16 @@ public class DatabaseTasks {
 	private String password;
 	QueryBuilder queryBuilder=new QueryBuilder();
 
-	
+		
 	public DatabaseTasks() {
 
 	}
 
-	public DatabaseTasks(String url, String username, String password) {
+	public DatabaseTasks(String url, String username, String password){
 		this.url = url;
 		this.password = password;
 		this.username = username;
+		
 	}
 
 	public Map<Integer, Object>fetchRecords(String tableName,Map<String, Object> keyMap)throws InvalidInputException,SQLException{
@@ -89,7 +90,7 @@ public class DatabaseTasks {
 			e.printStackTrace();
 		}
 		try(Connection connection=DriverManager.getConnection(url,username,password)) {
-			System.out.println(query);
+		
 			try(PreparedStatement statement=connection.prepareStatement(query);
 					ResultSet rs= statement.executeQuery();){
 				Map<Integer, Object> resultMap=new HashMap<>();
@@ -107,13 +108,13 @@ public class DatabaseTasks {
 				case "Branch":
 					
 					resultMap=fetchBranchData(rs);
-					System.out.println(resultMap);
+					
 					break;
 				default:
 					resultMap=null;
 					break;
 				}
-				System.out.println(resultMap);
+				
 			return resultMap;
 			}
 	}
@@ -219,6 +220,26 @@ public class DatabaseTasks {
 		}
 	}
 	
+	public void editRecords(String tableName,List<String> fieldsList,List<Object> recordValuesList,
+														Map<String, Object> keyMap) throws SQLException,InvalidInputException {
+		
+		UtilityTasks.checkNull(recordValuesList);
+		UtilityTasks.checkNull(fieldsList);
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		try(Connection connection=DriverManager.getConnection(url,username,password);){
+			String query=queryBuilder.modifyRecordQuery(tableName, fieldsList, recordValuesList, keyMap);
+			try(PreparedStatement statement=connection.prepareStatement(query)){
+				statement.executeUpdate();
+			}
+		}
+		
+	}
+	
 	public void deleteRecords(String tableName,Map<String, Object> conditionMap) throws SQLException,InvalidInputException {
 		UtilityTasks.checkNull(tableName);
 		UtilityTasks.checkNull(conditionMap);
@@ -228,12 +249,16 @@ public class DatabaseTasks {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		try(Connection connection=DriverManager.getConnection(url,username,password);
-				Statement statement=connection.createStatement()){
+		try(Connection connection=DriverManager.getConnection(url,username,password);){
 			String query=queryBuilder.deleteQuery(tableName, conditionMap);
-			statement.executeUpdate(query.toString());
+		try(PreparedStatement statement=connection.prepareStatement(query)){
+			statement.executeUpdate();
 		}
-	}
+		}		
+			
+			
+		}
+	
 	
 	public void addRecords(String tableName, List<String> fieldsList, List<Object> valuesList)
 			throws SQLException, InvalidInputException {
@@ -246,7 +271,7 @@ public class DatabaseTasks {
 			e.printStackTrace();
 		}
 		try (Connection connection = DriverManager.getConnection(url, username, password);
-				Statement statement = connection.createStatement()) {
+				) {
 			StringBuilder fields = new StringBuilder();
 			for (String field : fieldsList) {
 				fields.append(field + ",");
@@ -264,8 +289,10 @@ public class DatabaseTasks {
 			String query = "INSERT INTO " + tableName + " (" + fieldString + ") VALUES(" + recordString
 					+ ");";
 			
+			try(PreparedStatement statement = connection.prepareStatement(query)){
+				statement.executeUpdate();
+			}
 			
-			statement.executeUpdate(query);
 
 		}
 	}
@@ -280,10 +307,12 @@ public class DatabaseTasks {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		try(Connection connection=DriverManager.getConnection(url,username,password);
-				Statement statement=connection.createStatement()){
+		try(Connection connection=DriverManager.getConnection(url,username,password);){
 			String query=queryBuilder.modifyQuery(tableName, updateMap, keyMap);
-		statement.executeUpdate(query.toString());
+			try(PreparedStatement statement=connection.prepareStatement(query)){
+				statement.executeUpdate();
+			}
+		
 		}
 	}
 	

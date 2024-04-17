@@ -25,6 +25,14 @@ public class EmployeePersistence extends UserPersistence{
 			return (Employee)resultMap.get(userId);
 		}
 		
+		public void editEmployeePersonalInfo(int userId,List<Object> recordValuesList)throws InvalidInputException,SQLException{
+			List<String>fieldsList=dbTasks.fetchColumnList("User");
+			Map<String, Object> keyMap=getMap(dbTasks.fetchColumnList("User").get(0),userId);
+			dbTasks.editRecords("User", fieldsList, recordValuesList, keyMap);
+			
+			
+		}
+		
 		public void addAccount(List<Object> accountDetailsList) throws SQLException,InvalidInputException{
 			UtilityTasks.checkNull(accountDetailsList);
 			List<String> fieldList=dbTasks.fetchColumnList("Accounts");
@@ -96,7 +104,7 @@ public class EmployeePersistence extends UserPersistence{
 		public Branch getBranch(String branchName) throws SQLException,InvalidInputException, ClassNotFoundException{
 			UtilityTasks.checkNull(branchName);
 			String query=queryBuilder.demoQuery("Branch", dbTasks.fetchColumnList("Branch").get(1),branchName);
-			System.out.println(query);
+			
 			  return (Branch)(dbTasks.fetchListOfRecords("Branch",query).get(0));
 						
 		}

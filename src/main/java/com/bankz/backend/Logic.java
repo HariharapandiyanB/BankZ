@@ -141,12 +141,7 @@ public class Logic{
 		return transactionList;
 	}
 	
-	public void modifyInfo(int userId,String field,Object value)throws SQLException,InvalidInputException{
-		UtilityTasks.checkNull(field);
-		UtilityTasks.checkNull(value);
-		UtilityTasks.checkNull(userId);
-		up.modifyInfo(userId, field, value);
-	}
+	
 	
 	public void changePassword(int userId,String password) throws SQLException,InvalidInputException,NoSuchAlgorithmException{
 		UtilityTasks.checkNull(userId);
@@ -192,6 +187,11 @@ public class Logic{
 		ep.blockAccount(accountNumber);
 	}
 	
+	public void activateAccount(long accountNumber) throws SQLException,InvalidInputException{
+		UtilityTasks.checkNull(accountNumber);
+		ep.activateAccount(accountNumber);
+	}
+	
 	public void addCustomer(Customer customer) throws SQLException,InvalidInputException{
 		UtilityTasks.checkNull(customer);
 		List<Object> customerDetailsList=new ArrayList<Object>();
@@ -210,13 +210,32 @@ public class Logic{
 		if(verify.validMobileNumber(customer.getContactNum())) {
 			customerDetailsList.add(customer.getContactNum());
 		}
+		customerDetailsList.add(customer.getCreatedOn());
+		customerDetailsList.add(customer.getCreatedBy());
 		ep.addUser(customerDetailsList);
 		customerDetailsList=new ArrayList<>();
 		customerDetailsList.add(customer.getId());
 		customerDetailsList.add(customer.getAadharNum());
 		customerDetailsList.add(customer.getPanNum());
 		ep.addCustomer(customerDetailsList);
+		List<Object>logList=Arrays.asList(null,customer.getId(),"adding Customer",customer.getCreatedOn(),
+							customer.getCreatedBy(),customer.getCreatedOn(),customer.getCreatedBy());
+		ep.addLog(logList);
 		
+	}
+	
+	public void editCustomerPersonalInfo(Customer customer) throws InvalidInputException,SQLException{
+		
+		UtilityTasks.checkNull(customer);
+		Customer existingCustomer=getCustomerPersonalInfo(customer.getId());
+		List<Object> recordValuesList=Arrays.asList(existingCustomer.getId(),existingCustomer.getPassword(),
+										customer.getName(),customer.getEmail(),customer.getDob(),
+										customer.getAddress(),existingCustomer.getType(),
+										existingCustomer.getStatus(),customer.getContactNum());
+		cp.editCustomerPersonalInfo(existingCustomer.getId(),recordValuesList);
+		List<Object>logList=Arrays.asList(null,customer.getId(),"editing Customer Details",customer.getCreatedOn(),
+				customer.getCreatedBy(),Supplement.currentTimeInMillis(),customer.getId());
+		ep.addLog(logList);
 	}
 	
 	public void removeCustomer( int userId) throws InvalidInputException,SQLException{
@@ -261,6 +280,9 @@ public class Logic{
 		Branch branch=getBranch(employee.getBranch());
 		branch.setNumOfActiveEmployees(branch.getNumOfActiveEmployees()+1);
 		ep.modifyEmployeeCount(branch);
+		List<Object>logList=Arrays.asList(null,employee.getId(),"adding employee",employee.getCreatedOn(),
+				employee.getCreatedBy(),employee.getCreatedOn(),employee.getCreatedBy());
+		ep.addLog(logList);
 		
 	}
 	
@@ -268,7 +290,10 @@ public class Logic{
 		UtilityTasks.checkNull(employeeId);
 		ap.blockEmployee(employeeId);
 	}
-	
+	public void activateEmployee(int employeeId) throws SQLException,InvalidInputException{
+		UtilityTasks.checkNull(employeeId);
+		ap.activateEmployee(employeeId);
+	}
 	public void removeEmployee(int userId) throws SQLException,InvalidInputException, ClassNotFoundException{
 		UtilityTasks.checkNull(userId);
 		ap.removeEmployee(userId);
@@ -277,6 +302,19 @@ public class Logic{
 		branch.setNumOfActiveEmployees(branch.getNumOfActiveEmployees()-1);
 		ep.modifyEmployeeCount(branch);
 		
+	}
+	
+	public void editEmployeePersonalInfo(Employee employee) throws InvalidInputException,SQLException{
+		UtilityTasks.checkNull(employee);
+		Employee existingEmployee=getEmployeePersonalInfo(employee.getId());
+		List<Object> recordValuesList=Arrays.asList(existingEmployee.getId(),existingEmployee.getPassword(),
+										employee.getName(),employee.getEmail(),employee.getDob(),
+										employee.getAddress(),existingEmployee.getType(),
+										existingEmployee.getStatus(),employee.getContactNum());
+		ep.editEmployeePersonalInfo(existingEmployee.getId(),recordValuesList);
+		List<Object>logList=Arrays.asList(null,employee.getId(),"editing employee details",employee.getCreatedOn(),
+				employee.getCreatedBy(),Supplement.currentTimeInMillis(),employee.getId());
+		ep.addLog(logList);
 	}
 	
 	public void addBranch(Branch branch)throws SQLException,InvalidInputException{
@@ -290,6 +328,16 @@ public class Logic{
 		UtilityTasks.checkNull(branchId);
 		ap.removeBranch(branchId);
 		
+	}
+	
+	public Map<Integer, Branch> getAllBranches() throws InvalidInputException,SQLException{
+		Map<Integer, Object> branchMap=ap.getAllBranches();
+		Map<Integer, Branch>resultMap=new HashMap<Integer,Branch>();
+		for(Map.Entry<Integer, Object> entry:branchMap.entrySet()) {
+			Branch branch=new Branch();
+			branch=(Branch)entry.getValue();
+			resultMap.put(entry.getKey(), branch);
+		}return resultMap;
 	}
 	
 	public Branch getBranch(String branchName) throws InvalidInputException,SQLException, ClassNotFoundException{

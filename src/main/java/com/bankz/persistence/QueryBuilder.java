@@ -40,12 +40,22 @@ public class QueryBuilder {
 		return query.toString();
 	}
 	
+	public String modifyRecordQuery(String tableName,List<String>fieldList,List<Object>recordValuesList,Map<String, Object> keyMap) {
+		StringBuilder query=new StringBuilder();
+		update(query, tableName, fieldList,recordValuesList);
+		where(query, keyMap);
+		return query.toString();
+	}
+	
 	public String modifyQuery(String tableName,Map<String, Object> updateMap,Map<String, Object> keyMap) {
 		StringBuilder query=new StringBuilder();
 		update(query, tableName, updateMap);
 		where(query, keyMap);
 		return query.toString();
+		
 	}
+	
+	
 	
 	public String deleteQuery(String tableName,Map<String, Object>keyMap) {
 		StringBuilder query=new StringBuilder();
@@ -65,18 +75,33 @@ public class QueryBuilder {
 	
 	
 
-	private void select(StringBuilder query,String tableName) {
+	public void select(StringBuilder query,String tableName) {
 		
 		query.append("SELECT * FROM " + tableName);
 
 	}
 	
-	private void update(StringBuilder query,String tableName,Map<String, Object> updateMap) {
-		
-		for(Map.Entry<String, Object> entry:updateMap.entrySet()) {
-			query.append( " UPDATE "+tableName+" SET "+entry.getKey()+" = \'"+entry.getValue()+"\'");
-		}
+	private void update(StringBuilder query,String tableName,List<String>fieldList,
+								List<Object>recordValuesList) {
+
+		int length=fieldList.size();
+		query.append("UPDATE "+tableName+" SET ");
+		for(int i=0;i<length;i++) {
+			if(recordValuesList.get(i) instanceof String) {
+				query.append(fieldList.get(i)+" = \'"+recordValuesList.get(i)+"\',");
+			}else {
+				query.append(fieldList.get(i)+" = "+recordValuesList.get(i)+",");
+			}
+		}query.deleteCharAt(query.length()-1);
+	}
 	
+	@SuppressWarnings("unused")
+	private String update(StringBuilder query,String tableName,Map<String, Object>updateMap) {
+		updateMap.forEach((key,value)->
+		{ 
+			query.append(" UPDATE "+tableName+" SET "+key+" = \'"+value+"\'");
+		});
+		return query.toString();
 	}
 	
 	private void select(StringBuilder query, String tableName,List<String> columnList) {

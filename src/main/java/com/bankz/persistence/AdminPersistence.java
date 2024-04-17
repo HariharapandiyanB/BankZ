@@ -41,6 +41,12 @@ public class AdminPersistence extends EmployeePersistence{
 		dbTasks.addRecords("Branch", fieldList, branchDetailsList);
 	}
 	
+	public Map<Integer, Object> getAllBranches()throws SQLException,InvalidInputException{
+		StringBuilder query=new StringBuilder();
+		queryBuilder.select(query, "Branch");
+		return dbTasks.fetchRecords("Branch", query.toString());
+	}
+	
 	public void removeBranch(int branchId) throws SQLException,InvalidInputException, ClassNotFoundException{
 		Map<String, Object>keyMap=new HashMap<String, Object>();
 		keyMap.put(dbTasks.fetchColumnList("Branch").get(0), branchId);
